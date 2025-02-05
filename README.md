@@ -1,15 +1,13 @@
-fix this readme file
-```markdown
 # DNS Server Agent
 
-This project implements a DNS server agent that adheres to the specifications laid out in RFC 1034, RFC 1035, and RFC 2181. It is designed to handle various DNS query types (A, NS, MX, SOA, and PTR) and provide accurate responses according to the standards. The server is capable of processing different RCODEs (0 to 10) and includes an authoritative server cache to optimize query resolution.
+This project implements a DNS server agent that adheres to the specifications laid out in RFC 1034, RFC 1035, and RFC 2181. It is designed to handle various DNS query types (A, NS, MX, SOA, PTR) and provide accurate responses according to the standards. The server is capable of processing different RCODEs (0 to 10) and includes an authoritative server cache to optimize query resolution.
 
 ## Key Features
-- **Handles All RCODEs**: 0 to 10, as specified in RFC 1035.
-- **Supports Multiple Query Types**: A, NS, MX, SOA, PTR, and more.
-- **Caching Mechanism**: Utilizes Redis for caching DNS responses to improve performance.
-- **Authoritative Server**: Manages DNS records for specific domains.
-- **Recursive and Iterative Resolution**: Supports both recursive and iterative DNS query resolution.
+- **Handles All RCODEs**: Supports RCODE values from 0 to 10, as specified in RFC 1035.
+- **Supports Multiple Query Types**: Processes query types such as A, NS, MX, SOA, PTR, and more.
+- **Caching Mechanism**: Utilizes Redis for caching DNS responses to improve performance and reduce latency.
+- **Authoritative Server**: Manages DNS records for specific domains efficiently.
+- **Recursive and Iterative Resolution**: Provides both recursive and iterative DNS query resolution capabilities.
 - **UDP and TCP Transport**: Handles DNS queries over both UDP and TCP protocols.
 
 ## Directory Structure
