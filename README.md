@@ -98,4 +98,8 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 For any questions or issues, please open an issue on the GitHub repository or contact the maintainer directly.
 
 ---
-... (5 lines left)
+
+**Note**: This project is for educational purposes and may not be suitable for production use without further testing and optimization.
+```
+
+This `README.md` file provides a comprehensive overview of the DNS server project, including its features, setup instructions, and directory structure. It also includes information on how to contribute and contact the maintainer.
