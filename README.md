@@ -86,19 +86,8 @@ This project implements a DNS server agent that adheres to the specifications la
 ## Contributing
 Contributions are welcome! Please feel free to fork, create branches, and open pull requests.
 
-## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
 - This project is based on the DNS standards defined in RFC 1034, RFC 1035, and RFC 2181.
-- Special thanks to the open-source community for providing tools and libraries that made this project possible.
 
-## Contact
-For any questions or issues, please open an issue on the GitHub repository or contact the maintainer directly.
 
----
-
-**Note**: This project is for educational purposes and may not be suitable for production use without further testing and optimization.
-```
-
-This `README.md` file provides a comprehensive overview of the DNS server project, including its features, setup instructions, and directory structure. It also includes information on how to contribute and contact the maintainer.
