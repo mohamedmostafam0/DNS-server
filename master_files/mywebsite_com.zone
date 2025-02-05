@@ -1,0 +1,18 @@
+$ORIGIN mywebsite.com.
+$TTL 3600
+
+mywebsite.com IN A 93.184.216.35
+mywebsite.com IN A 93.184.216.36
+mywebsite.com IN NS ns1.mywebsite.com.
+mywebsite.com IN NS ns2.mywebsite.com.
+mywebsite.com IN MX 10 mail.mywebsite.com.
+mywebsite.com IN MX 20 backup.mail.mywebsite.com.
+mywebsite.com IN SOA ns1.mywebsite.com. admin.mywebsite.com. (
+    2023120302 ; Serial
+    7200 ; Refresh
+    3600 ; Retry
+    1209600 ; Expire
+    86400 ; Minimum TTL
+)
+mywebsite.com IN PTR mywebsite.com.
+mywebsite.com IN PTR reverse.mywebsite.com.

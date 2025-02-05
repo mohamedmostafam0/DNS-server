@@ -1,0 +1,6 @@
+requests
+pyyaml
+dnslib
+redis
+dnspython
+tldextract

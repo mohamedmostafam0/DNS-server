@@ -1,0 +1,28 @@
+$ORIGIN opensource.org.
+$TTL 3600
+
+opensource.org IN A 93.184.216.36
+opensource.org IN A 93.184.216.37
+opensource.org IN NS ns1.opensource.org.
+opensource.org IN NS ns2.opensource.org.
+opensource.org IN MX 10 mail.opensource.org.
+opensource.org IN MX 20 backup.mail.opensource.org.
+opensource.org IN SOA ns1.opensource.org. admin.opensource.org. (
+    2023120303 ; Serial
+    7200 ; Refresh
+    3600 ; Retry
+    1209600 ; Expire
+    86400 ; Minimum TTL
+)
+opensource.org IN PTR 93.184.216.36.in-addr.arpa.
+opensource.org IN PTR 93.184.216.37.in-addr.arpa.
+opensource.org IN TXT "\"Open source is freedom.\""
+opensource.org IN CNAME alias.opensource.org.
+opensource.org IN HINFO ""AMD" "Ryzen" "Arch Linux""
+opensource.org IN MINFO admin@opensource.org errors@opensource.org
+opensource.org IN MB mailbox1.opensource.org.
+opensource.org IN MG mailgroup@opensource.org
+opensource.org IN MR mailrename@opensource.org
+opensource.org IN NULL
+opensource.org IN WKS 93.184.216.36 17 01020304
+opensource.org IN MAILB backup-mail@opensource.org

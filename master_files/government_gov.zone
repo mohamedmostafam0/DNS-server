@@ -1,0 +1,18 @@
+$ORIGIN government.gov.
+$TTL 3600
+
+government.gov IN A 93.184.216.39
+government.gov IN A 93.184.216.40
+government.gov IN NS ns1.government.gov.
+government.gov IN NS ns2.government.gov.
+government.gov IN MX 10 mail.government.gov.
+government.gov IN MX 20 backup.mail.government.gov.
+government.gov IN SOA ns1.government.gov. admin.government.gov. (
+    2023120306 ; Serial
+    7200 ; Refresh
+    3600 ; Retry
+    1209600 ; Expire
+    86400 ; Minimum TTL
+)
+government.gov IN PTR government.gov.
+government.gov IN PTR reverse.government.gov.

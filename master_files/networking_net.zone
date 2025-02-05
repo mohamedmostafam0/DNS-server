@@ -1,0 +1,25 @@
+$ORIGIN networking.net.
+$TTL 3600
+
+networking.net IN A 93.184.216.37
+networking.net IN A 93.184.216.38
+networking.net IN NS ns1.networking.net.
+networking.net IN NS ns2.networking.net.
+networking.net IN MX 10 mail.networking.net.
+networking.net IN MX 20 backup.mail.networking.net.
+networking.net IN SOA ns1.networking.net. admin.networking.net. (
+    2023120304 ; Serial
+    7200 ; Refresh
+    3600 ; Retry
+    1209600 ; Expire
+    86400 ; Minimum TTL
+)
+networking.net IN PTR networking.net.
+networking.net IN TXT "v=spf1 include:_spf.networking.net ~all"
+networking.net IN CNAME alias.networking.net.
+networking.net IN MG mailgroup@networking.net
+networking.net IN MR mailrename@networking.net
+networking.net IN NULL
+networking.net IN HINFO "Intel" "i7"
+networking.net IN HINFO "Ubuntu" "Linux"
+networking.net IN MAILB mailbackup@networking.net

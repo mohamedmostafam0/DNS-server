@@ -1,0 +1,17 @@
+$ORIGIN innovators.tech.
+$TTL 3600
+
+innovators.tech IN A 93.184.216.41
+innovators.tech IN A 93.184.216.42
+innovators.tech IN NS ns1.innovators.tech.
+innovators.tech IN NS ns2.innovators.tech.
+innovators.tech IN MX 10 mail.innovators.tech.
+innovators.tech IN SOA ns1.innovators.tech. admin.innovators.tech. (
+    2023120308 ; Serial
+    7200 ; Refresh
+    3600 ; Retry
+    1209600 ; Expire
+    86400 ; Minimum TTL
+)
+innovators.tech IN PTR innovators.tech.
+innovators.tech IN PTR reverse.innovators.tech.

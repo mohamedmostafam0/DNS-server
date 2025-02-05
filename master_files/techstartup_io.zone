@@ -1,0 +1,28 @@
+$ORIGIN techstartup.io.
+$TTL 3600
+
+techstartup.io IN A 93.184.216.40
+techstartup.io IN A 93.184.216.41
+techstartup.io IN NS ns1.techstartup.io.
+techstartup.io IN NS ns2.techstartup.io.
+techstartup.io IN MX 10 mail.techstartup.io.
+techstartup.io IN MX 20 backup.mail.techstartup.io.
+techstartup.io IN SOA ns1.techstartup.io. admin.techstartup.io. (
+    2023120307 ; Serial
+    7200 ; Refresh
+    3600 ; Retry
+    1209600 ; Expire
+    86400 ; Minimum TTL
+)
+techstartup.io IN PTR 93.184.216.40.in-addr.arpa.
+techstartup.io IN PTR 93.184.216.41.in-addr.arpa.
+techstartup.io IN TXT "\"Startups rule!\""
+techstartup.io IN CNAME alias.techstartup.io.
+techstartup.io IN HINFO ""Intel" "i9" "Debian Linux""
+techstartup.io IN MINFO admin@techstartup.io errors@techstartup.io
+techstartup.io IN MB mailbox1.techstartup.io.
+techstartup.io IN MG mailgroup@techstartup.io
+techstartup.io IN MR mailrename@techstartup.io
+techstartup.io IN NULL
+techstartup.io IN WKS 93.184.216.40 6 01020304
+techstartup.io IN MAILB backup-mail@techstartup.io

@@ -1,0 +1,24 @@
+$ORIGIN example.com.
+$TTL 3600
+
+example.com IN A 93.184.216.34
+example.com IN NS ns1.example.com.
+example.com IN NS ns2.example.com.
+example.com IN MX 10 mail.example.com.
+example.com IN MX 20 backup.mail.example.com.
+example.com IN SOA ns1.example.com. admin.example.com. (
+    2023120301 ; Serial
+    7200 ; Refresh
+    3600 ; Retry
+    1209600 ; Expire
+    86400 ; Minimum TTL
+)
+example.com IN PTR example.com.
+example.com IN TXT "v=spf1 include:_spf.example.com ~all"
+example.com IN CNAME alias.example.com.
+example.com IN MG mailgroup@example.com
+example.com IN MR mailrename@example.com
+example.com IN NULL
+example.com IN HINFO "Intel" "i7"
+example.com IN HINFO "Ubuntu" "Linux"
+example.com IN MAILB mailbackup@example.com

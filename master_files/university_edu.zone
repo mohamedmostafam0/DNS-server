@@ -1,0 +1,26 @@
+$ORIGIN university.edu.
+$TTL 3600
+
+university.edu IN A 93.184.216.38
+university.edu IN A 93.184.216.39
+university.edu IN NS ns1.university.edu.
+university.edu IN NS ns2.university.edu.
+university.edu IN MX 10 mail.university.edu.
+university.edu IN MX 20 backup.mail.university.edu.
+university.edu IN SOA ns1.university.edu. admin.university.edu. (
+    2023120305 ; Serial
+    7200 ; Refresh
+    3600 ; Retry
+    1209600 ; Expire
+    86400 ; Minimum TTL
+)
+university.edu IN PTR university.edu.
+university.edu IN TXT "v=spf1 include:_spf.university.edu ~all"
+university.edu IN CNAME alias.university.edu.
+university.edu IN MG mailgroup@university.edu
+university.edu IN MR mailrename@university.edu
+university.edu IN NULL
+university.edu IN WKS 93.184.216.38 6 01020304
+university.edu IN HINFO "Intel" "i7"
+university.edu IN HINFO "Ubuntu" "Linux"
+university.edu IN MAILB mailbackup@university.edu
