@@ -1,37 +1,41 @@
 services:
-  redis1:
-      image: "redis:latest"
-      container_name: "redis-server-1"
-      ports:
-        - "6379:6379"
-      command: redis-server --databases 3  # Configures Redis to use 2 databases
-      restart: always
+  redis-resolver:
+    image: "redis:latest"
+    container_name: "redis-resolver"
+    ports:
+      - "6379:6379"
+    command: redis-server --databases 1
+    restart: always
 
-  redis2:
-      image: "redis:latest"
-      container_name: "redis-server-2"
-      ports:
-        - "6380:6379"  # Maps to a different port for the second Redis instance
-      command: redis-server --databases 3  # Configures Redis to use 2 databases
-      restart: always
+  redis-auth:
+    image: "redis:latest"
+    container_name: "redis-auth"
+    ports:
+      - "6380:6379"
+    command: redis-server --databases 1
+    restart: always
 
-  redis3:
-      image: "redis:latest"
-      container_name: "redis-server-3"
-      ports:
-        - "6381:6379"  # Maps to a different port for the second Redis instance
-      command: redis-server --databases 3  # Configures Redis to use 2 databases
-      restart: always
+  redis-tld:
+    image: "redis:latest"
+    container_name: "redis-tld"
+    ports:
+      - "6381:6379"
+    command: redis-server --databases 1
+    restart: always
 
   python-dns:
     build: .
-    container_name: "python-dns-resolver"
+    container_name: "python-dns-server"
     ports:
-      - "1053:1053"
+      - "1053:1053/udp"
+      - "1053:1053/tcp"
     environment:
-      - REDIS_HOST1=redis1
-      - REDIS_HOST2=REDIS_HOST2
+      - REDIS_RESOLVER_HOST=redis-resolver
+      - REDIS_AUTH_HOST=redis-auth
+      - REDIS_TLD_HOST=redis-tld
+      - LOG_LEVEL=DEBUG
     depends_on:
-      - redis1
-      - redis2
+      - redis-resolver
+      - redis-auth
+      - redis-tld
     restart: always

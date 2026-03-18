@@ -17,7 +17,7 @@ from utils import parse_dns_query
 # Setup logging
 logging.basicConfig(
     level=logging.DEBUG,
-    filename='C:/Users/moham/Documents/uni/semesters/fall 2025/networks/Networks-project/app/app.log',       # Logs will be saved to "app.log"
+    filename='app.log',       # Logs will be saved to "app.log"
     filemode='w',             # Overwrite the file each time the script runs
     format='%(asctime)s - %(levelname)s - %(message)s'  # Custom log format
 )
@@ -101,7 +101,7 @@ def start_dns_server():
         logging.error("Failed to initialize caches")
     resolver = Resolver()
     server = Server()
-    authoritative_server = AuthoritativeServer(authoritative_cache)  # Handle authoritative queries    root_server = RootServer()  # Initialize RootServer
+    authoritative_server = AuthoritativeServer(authoritative_cache)  # Handle authoritative queries
     root_server = RootServer()  # Initialize RootServer
     tld_server = TLDServer(tld_cache)    # Initialize TLDServer
     

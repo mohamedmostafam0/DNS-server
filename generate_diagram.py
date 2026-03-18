@@ -1,0 +1,43 @@
+
+def generate_mermaid():
+    mermaid = """
+graph TD
+    Client[DNS Client / dig] -->|UDP/TCP:1053| Resolver[Recursive Resolver]
+    
+    subgraph "DNS Hierarchy"
+        Resolver -->|1. Iterative Query| Root[Root Server]
+        Root -->|2. Referral to TLD| Resolver
+        Resolver -->|3. Iterative Query| TLD[TLD Server]
+        TLD -->|4. Referral to Auth| Resolver
+        Resolver -->|5. Iterative Query| Auth[Authoritative Server]
+        Auth -->|6. Answer| Resolver
+    end
+
+    Resolver -->|Final Response| Client
+
+    subgraph "Caching Layer (Redis)"
+        Resolver -.-> RC[Resolver Cache :6379]
+        TLD -.-> TC[TLD Cache :6381]
+        Auth -.-> AC[Name Cache :6380]
+    end
+
+    subgraph "Storage"
+        Auth -->|Load/Save| ZoneFiles[Zone Files .zone]
+    end
+
+    style Resolver fill:#f9f,stroke:#333,stroke-width:2px
+    style Root fill:#bbf,stroke:#333,stroke-width:1px
+    style TLD fill:#bbf,stroke:#333,stroke-width:1px
+    style Auth fill:#bbf,stroke:#333,stroke-width:1px
+    style RC fill:#dfd,stroke:#333,stroke-dasharray: 5 5
+    style TC fill:#dfd,stroke:#333,stroke-dasharray: 5 5
+    style AC fill:#dfd,stroke:#333,stroke-dasharray: 5 5
+"""
+    return mermaid
+
+if __name__ == "__main__":
+    diagram = generate_mermaid()
+    with open("architecture.mmd", "w") as f:
+        f.write(diagram)
+    print("Architecture diagram generated in architecture.mmd")
+    print("You can paste the content into a Mermaid-compatible viewer or GitHub README.")
