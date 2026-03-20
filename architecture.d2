@@ -1,0 +1,176 @@
+direction: right
+
+title: |md
+  # Distributed DNS Server Suite — Architecture
+| {
+  near: top-center
+  style: {
+    font-size: 28
+    bold: true
+  }
+}
+
+# ──────────────────────────────────────────────────
+# Client Layer
+# ──────────────────────────────────────────────────
+client: Client Layer {
+  style: {
+    fill: "#F0F4FF"
+    stroke: "#4A6FA5"
+    border-radius: 12
+    font-size: 18
+    bold: true
+  }
+
+  dig: DNS Client\n(dig / nslookup) {
+    icon: https://cdn.simpleicons.org/gnubash/4EAA25
+    shape: image
+  }
+}
+
+# ──────────────────────────────────────────────────
+# Transport Layer (Python)
+# ──────────────────────────────────────────────────
+transport: Transport Layer {
+  style: {
+    fill: "#E6F3FF"
+    stroke: "#2196F3"
+    border-radius: 12
+    font-size: 18
+    bold: true
+  }
+
+  udp: UDP Transport\n(Port 1053) {
+    icon: https://cdn.simpleicons.org/python/3776AB
+    shape: image
+  }
+
+  tcp: TCP Transport\n(Port 1053) {
+    icon: https://cdn.simpleicons.org/python/3776AB
+    shape: image
+  }
+
+  queue: Thread-safe\nQuery Queue {
+    shape: queue
+  }
+
+  udp -> queue: Push
+  tcp -> queue: Push
+}
+
+# ──────────────────────────────────────────────────
+# Core Processing
+# ──────────────────────────────────────────────────
+core: Core Processing {
+  style: {
+    fill: "#F0FFF0"
+    stroke: "#4CAF50"
+    border-radius: 12
+    font-size: 18
+    bold: true
+  }
+
+  processor: Process Queries Thread\n(Orchestrator) {
+    icon: https://cdn.simpleicons.org/python/3776AB
+    shape: image
+  }
+
+  resolver: Recursive Resolver\n(RFC 1034/1035 Logic) {
+    icon: https://cdn.simpleicons.org/python/3776AB
+    shape: image
+  }
+
+  transport.queue -> processor: Dequeue
+  processor -> resolver: resolve_query()
+}
+
+# ──────────────────────────────────────────────────
+# DNS Hierarchy
+# ──────────────────────────────────────────────────
+hierarchy: DNS Hierarchy {
+  style: {
+    fill: "#FFF8E7"
+    stroke: "#D4A843"
+    border-radius: 12
+    font-size: 18
+    bold: true
+  }
+
+  root: Root Server (.)\n(Referral to TLD) {
+    icon: https://cdn.simpleicons.org/python/3776AB
+    shape: image
+  }
+
+  tld: TLD Server\n(.com, .org, .net, etc.) {
+    icon: https://cdn.simpleicons.org/python/3776AB
+    shape: image
+  }
+
+  auth: Authoritative Server\n(Domain Records) {
+    icon: https://cdn.simpleicons.org/python/3776AB
+    shape: image
+  }
+
+  root -> tld: Referral
+  tld -> auth: Referral
+}
+
+# ──────────────────────────────────────────────────
+# Caching Layer (Redis)
+# ──────────────────────────────────────────────────
+caching: Caching Layer (Redis) {
+  style: {
+    fill: "#FFF0F5"
+    stroke: "#FF69B4"
+    border-radius: 12
+    font-size: 18
+    bold: true
+  }
+
+  res_cache: Resolver Cache\n(Port 6379) {
+    icon: https://cdn.simpleicons.org/redis/DC382D
+    shape: image
+  }
+
+  tld_cache: TLD Cache\n(Port 6381) {
+    icon: https://cdn.simpleicons.org/redis/DC382D
+    shape: image
+  }
+
+  auth_cache: Name Cache\n(Port 6380) {
+    icon: https://cdn.simpleicons.org/redis/DC382D
+    shape: image
+  }
+}
+
+# ──────────────────────────────────────────────────
+# Storage Layer
+# ──────────────────────────────────────────────────
+storage: Storage Layer {
+  style: {
+    fill: "#F8F0FF"
+    stroke: "#7B68EE"
+    border-radius: 12
+    font-size: 18
+    bold: true
+  }
+
+  zone_files: Master Zone Files\n(master_files/*.zone) {
+    shape: cylinder
+  }
+}
+
+# ──────────────────────────────────────────────────
+# Resolution Flow
+# ──────────────────────────────────────────────────
+
+client.dig -> transport.udp: 1. DNS Query
+core.resolver -> caching.res_cache: 2. Check Cache
+core.resolver -> hierarchy.root: 3. Root Query (if miss)
+core.resolver -> caching.tld_cache: 4. Check/Store TLD
+core.resolver -> hierarchy.tld: 5. TLD Query
+core.resolver -> caching.auth_cache: 6. Check/Store Auth
+core.resolver -> hierarchy.auth: 7. Authoritative Query
+
+hierarchy.auth -> storage.zone_files: Load & Periodic Save
+core.resolver -> client.dig: 8. Final Response
